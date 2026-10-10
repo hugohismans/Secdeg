@@ -46,7 +46,7 @@
   {/each}
   {#if revealed < Math.min(hints.length, HINTS.levels)}
     <button class="secondary small" onclick={reveal}>
-      💡 {revealed === 0 ? "J'ai besoin d'un indice" : revealed === 1 ? 'Un indice plus précis' : 'Voir la correction'}
+      {revealed === 0 ? "J'ai besoin d'un indice" : revealed === 1 ? 'Un indice plus précis' : 'Voir la correction'}
     </button>
   {/if}
 </div>

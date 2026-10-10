@@ -17,7 +17,7 @@
     {@const unlocked = progress.isUnlocked(game, n)}
     <li>
       <button class="level secondary" disabled={!unlocked} onclick={() => onselect(n)} aria-label="Niveau {n} : {lv.title}">
-        <span class="num">{unlocked ? n : '🔒'}</span>
+        <span class="num">{n}</span>{#if !unlocked}<span class="lock">verrouillé</span>{/if}
         <span class="title">{lv.title}</span>
         {#if lv.subtitle}<span class="sub muted">{lv.subtitle}</span>{/if}
         <Stars value={progress.stars(game, n)} size="1em" />
@@ -45,11 +45,17 @@
     min-height: 100px;
   }
   .num {
+    font-family: var(--f-titre);
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
   .title {
     font-weight: 600;
+  }
+  .lock {
+    font-size: 0.8em;
+    color: var(--muted);
+    font-weight: 400;
   }
   .sub {
     font-size: 0.85em;

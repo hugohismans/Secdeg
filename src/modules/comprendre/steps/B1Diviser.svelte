@@ -20,7 +20,7 @@
 
   <p>Refaisons <strong>exactement les mêmes gestes</strong>, mais avec des lettres : n'importe quels <Tex tex="a" />, <Tex tex="b" />, <Tex tex="c" /> (avec <Tex tex="a \neq 0" />).</p>
   <div class="eq"><Tex tex={GEN.eq0} display /></div>
-  <div class="eq side"><span class="lbl">Dans notre exemple</span><Tex tex={`${EX.eq0} \\quad (a = 1,\\; b = 6,\\; c = -16)`} /></div>
+  <div class="eq side"><span class="lbl">Dans notre exemple</span><Tex tex={`${EX.eq0} \\quad (a = 1,\\; b = 10,\\; c = -39)`} /></div>
 
   {#if phase === 0}
     <div class="actions"><button onclick={() => (phase = 1)}>Passer c à droite</button></div>
@@ -37,7 +37,7 @@
     <div class="eq"><Tex tex={`${X2()} + ${hl(BX('\\frac{b}{a}x'))} = ${hl(CC('-\\frac{c}{a}'))}`} display /></div>
     <p>
       Voilà notre carré <Tex tex={X2()} /> et notre rectangle de côtés <Tex tex="x" /> et <Tex tex={BX('\\tfrac{b}{a}')} />.
-      Dans l'exemple, <Tex tex={'\\tfrac{b}{a} = \\tfrac{6}{1} = 6'} /> et <Tex tex={'-\\tfrac{c}{a} = 16'} /> : c'est bien la même figure.
+      Dans l'exemple, <Tex tex={'\\tfrac{b}{a} = \\tfrac{10}{1} = 10'} /> et <Tex tex={'-\\tfrac{c}{a} = 39'} /> : c'est bien la même figure.
     </p>
   {/if}
 </StepLayout>

@@ -13,12 +13,16 @@ export const DL = (s: string) => c(COLORS.delta, s);
 export const hl = (s: string) => `\\colorbox{${HL_BG}}{$${s}$}`;
 
 // Exemple numérique
+// Le problème d'al-Khwârizmî : « un carré et dix racines égalent trente-neuf dirhams »
 export const EX = {
-  eq0: `${X2()} + ${BX('6x')} = ${CC('16')}`,
-  eqCut: `${X2()} + ${BX('3x')} + ${BX('3x')} = ${CC('16')}`,
-  eqCorner: `${X2()} + ${BX('6x')} + ${CO('9')} = ${CC('16')} + ${CO('9')}`,
-  eqSquare: `(x + ${CO('3')})^2 = 25`,
+  eq0: `${X2()} + ${BX('10x')} = ${CC('39')}`,
+  eqCut: `${X2()} + ${BX('5x')} + ${BX('5x')} = ${CC('39')}`,
+  eqCorner: `${X2()} + ${BX('10x')} + ${CO('25')} = ${CC('39')} + ${CO('25')}`,
+  eqSquare: `(x + ${CO('5')})^2 = 64`,
 };
+
+/** étiquettes du diagramme pour l'exemple */
+export const EX_LABELS = { x: 'x', half: '5', full: '10', corner: '25' };
 
 // Cas général
 export const GEN = {

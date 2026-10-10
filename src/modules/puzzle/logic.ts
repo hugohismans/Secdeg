@@ -124,7 +124,7 @@ export function symbolicSteps(q: Quadratic): SymbolicStep[] {
   const eq0 = `${polyLatex(q)} = 0`;
   const eqMoved = `${polyLatex(quad1(a, b))} = ${L(neg(c))}`;
   const eqDiv = `${polyLatex(quad1(frac(1), bOverA))} = ${L(rhs0)}`;
-  const eqCorner = `x^2 + ${term(bOverA)}x + ${L(corner)} = ${L(rhs0)} + ${L(corner)}`;
+  const eqCorner = `x^2 ${linTerm(bOverA)} + ${L(corner)} = ${L(rhs0)} + ${L(corner)}`;
   const eqSquare = `\\left(x ${sgn(half)} ${L(absf(half))}\\right)^2 = ${L(rhs1)}`;
 
   steps.push({
@@ -165,7 +165,7 @@ export function symbolicSteps(q: Quadratic): SymbolicStep[] {
     before: toNumber(a) !== 1 ? eqDiv : eqMoved,
     expected: [toNumber(corner)],
     fields: ['nombre à ajouter'],
-    template: `x^2 + ${term(bOverA)}x + \\square = ${L(rhs0)} + \\square`,
+    template: `x^2 ${linTerm(bOverA)} + \\square = ${L(rhs0)} + \\square`,
     hints: [
       ['C\'est l\'aire du coin manquant : le carré de la moitié du coefficient de x.'],
       [`La moitié de ${L(bOverA)} est ${L(half)}. Le coin vaut (${L(half)})².`],
@@ -227,10 +227,12 @@ function absf(f: Fraction): Fraction {
 function sgn(f: Fraction): string {
   return f.n < 0 ? '-' : '+';
 }
-function term(coef: Fraction): string {
-  if (coef.n === 1 && coef.d === 1) return '';
-  if (coef.n === -1 && coef.d === 1) return '-';
-  return fracLatex(coef);
+/** « + 10x », « − 10x », « + x », « + \frac{5}{2}x » */
+function linTerm(coef: Fraction): string {
+  const sign = coef.n < 0 ? '-' : '+';
+  const abs = absf(coef);
+  const body = abs.n === 1 && abs.d === 1 ? '' : fracLatex(abs);
+  return `${sign} ${body}x`;
 }
 // évite les imports inutilisés
 void fsub; void mul; void canonical;

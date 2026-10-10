@@ -12,7 +12,7 @@
     anchor?: 'start' | 'middle' | 'end';
     weight?: string;
   }
-  let { text, x, y, size = 18, fill = '#1a202c', anchor = 'middle', weight = '600' }: Props = $props();
+  let { text, x, y, size = 18, fill = '#2b2018', anchor = 'middle', weight = '600' }: Props = $props();
 
   let parts = $derived.by(() => {
     const i = text.indexOf('/');
@@ -38,7 +38,7 @@
       {#if sp.sup}
         <tspan font-size={fs * 0.65} dy={-fs * 0.4}>{sp.t}</tspan>
       {:else}
-        <tspan font-style={sp.italic ? 'italic' : 'normal'} font-family={sp.italic ? "'KaTeX_Math', 'Times New Roman', serif" : 'inherit'}>{sp.t}</tspan>
+        <tspan font-style={sp.italic ? 'italic' : 'normal'} font-family={sp.italic ? "'Alegreya', Georgia, serif" : 'inherit'}>{sp.t}</tspan>
       {/if}
     {/each}
   </text>

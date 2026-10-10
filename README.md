@@ -1,13 +1,24 @@
-# Second degré
+# Le livre de la restauration
 
-Web app éducative pour apprendre les équations du second degré (secondaire, Fédération Wallonie-Bruxelles).
+Web app éducative pour apprendre les équations du second degré (3e et 4e secondaire, Fédération Wallonie-Bruxelles).
 Priorité : comprendre d'où vient la formule des racines, par la complétion du carré, avant de l'appliquer.
 
-- **Comprendre** : 12 étapes manipulables, de x² + 6x = 16 (tuiles à glisser) à x = (−b ± √Δ) / 2a, puis les trois cas selon Δ, « centre ± écart » et la fiche mémo.
-- **Rapidité** : 0, 1 ou 2 solutions ? (équation ou graphe) et Δ de tête, avec chrono, score, série et record.
-- **Puzzle de tuiles** : compléter le carré avec des tuiles, puis en symbolique, sur 12 niveaux.
-- **Lance-parabole** : régler a, b, c pour toucher des cibles, atterrir sur les racines, imposer le sommet.
-- **Mode projection** : tout en grand, sans chrono ni score, pour le tableau.
+L'univers : Bagdad, an 820. L'élève devient l'apprenti d'al-Khwârizmî, dont le livre *al-jabr wa-l-muqâbala*
+a donné son nom à l'algèbre. Le code couleur mathématique reprend les pigments des céramiques abbassides.
+
+Deux modes :
+
+- **L'Histoire** : sept chapitres jouables dans la ville ronde de Bagdad. On découvre le carré, la racine, le ±,
+  al-jabr, la « question impossible » (Δ), les fontaines des Banû Mûsâ et la formule, avec le maître, les trois frères
+  et Sifr, le chat de la bibliothèque. Les faits historiques sont exacts ; les dialogues sont inventés.
+- **Le Cours** : 12 étapes manipulables, de x² + 10x = 39 (le problème d'al-Khwârizmî) à x = (−b ± √Δ) / 2a, puis les trois
+  cas selon Δ, « centre ± écart » et la fiche mémo. Mode projection pour le tableau.
+
+Trois jeux, intégrés à l'Histoire et rejouables depuis le Cours :
+
+- **Les questions du calife** (rapidité) : 0, 1 ou 2 solutions ? et Δ de tête, avec sablier, score, série et record.
+- **La cour à carreler** (puzzle de tuiles) : compléter le carré avec des tuiles, puis en symbolique, sur 12 niveaux.
+- **Les fontaines des Banû Mûsâ** (lance-parabole) : régler a, b, c pour que le jet passe dans les anneaux, tombe dans les bassins, monte à la bonne hauteur.
 
 Sans compte ni serveur : la progression est dans le `localStorage`. PWA installable, fonctionne hors ligne.
 
@@ -23,6 +34,11 @@ npm run preview    # sert dist/ en local
 ```
 
 Stack : Svelte 5 (runes), Vite, TypeScript, KaTeX, SVG, vite-plugin-pwa.
+Polices embarquées (hors ligne) : Alegreya, Alegreya Sans, Reem Kufi.
+
+## Crédits
+
+- Silhouette de Sifr : « Sitting Cat Silhouette », Openclipart n° 169097, domaine public.
 
 ## Réglages
 
@@ -50,6 +66,9 @@ src/
 ├── lib/                   composants partagés (KaTeX, parabole SVG, curseur, indices, drag…)
 ├── state/                 progression, erreurs (adaptativité), réglages — localStorage
 └── modules/
+    ├── histoire/          mode Histoire : carte de la ville ronde, lecteur de chapitres,
+    │                      chapitres/c1.ts … c7.ts (textes et activités)
+    ├── cours/             accueil du Cours
     ├── comprendre/        diagramme de complétion du carré + 12 étapes
     ├── projection/
     ├── rapidite/

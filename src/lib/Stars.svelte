@@ -18,6 +18,6 @@
     color: var(--border);
   }
   .stars span.on {
-    color: #f6ad55;
+    color: var(--ambre);
   }
 </style>

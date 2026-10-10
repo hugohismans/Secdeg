@@ -56,7 +56,7 @@
     color: var(--c);
     font-size: 1.2em;
     font-style: italic;
-    font-family: 'KaTeX_Math', 'Times New Roman', serif;
+    font-family: var(--f-titre);
   }
   .controls {
     display: flex;

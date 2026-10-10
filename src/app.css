@@ -1,24 +1,51 @@
+/*
+ * Direction artistique « Bagdad, an 820 » :
+ * papier de Bagdad, encre brune, pigments des céramiques de Bassora.
+ * Les couleurs mathématiques (x², bx, coin, Δ) sont aussi dans config.ts.
+ */
 :root {
-  --bg: #f6f7fb;
-  --surface: #ffffff;
-  --text: #1a202c;
-  --muted: #4a5568;
-  --border: #e2e8f0;
-  --primary: #2b4c9b;
-  --primary-soft: #e3e9f8;
-  --ok: #2f855a;
-  --ok-soft: #e6f4ea;
-  --ko: #c53030;
-  --ko-soft: #fde8e8;
-  --warn: #b7791f;
-  --warn-soft: #fef6e4;
-  --radius: 12px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
+  color-scheme: light;
+  /* papier et encre */
+  --papier: #f2e9d6;
+  --papier-fonce: #e6d8bb;
+  --email: #fcf9f2;
+  --encre: #2b2018;
+  --encre-douce: #6a5846;
+  --filet: #d3c09c;
+  --or: #a8822f;
+  /* pigments */
+  --cobalt: #1f4c8f;
+  --ambre: #a9661a;
+  --cuivre: #2c7356;
+  --manganese: #6b3a73;
+  --garance: #a33a28;
+
+  /* rôles (utilisés par les composants) */
+  --bg: var(--papier);
+  --surface: var(--email);
+  --text: var(--encre);
+  --muted: var(--encre-douce);
+  --border: var(--filet);
+  --primary: var(--cobalt);
+  --primary-soft: #dfe6f1;
+  --ok: var(--cuivre);
+  --ok-soft: #e2eee6;
+  --ko: var(--garance);
+  --ko-soft: #f5e1da;
+  --warn: var(--ambre);
+  --warn-soft: #f6ead2;
+
+  --f-titre: 'Alegreya', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --f-texte: 'Alegreya Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --f-arabe: 'Reem Kufi', 'Geeza Pro', 'Noto Kufi Arabic', Arial, sans-serif;
+
+  --radius: 8px;
+  --shadow: 0 1px 0 var(--papier-fonce), 0 14px 32px -24px rgba(60, 40, 10, 0.45);
   --tap: 44px;
   --scale: 1;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
-  font-size: calc(16px * var(--scale));
-  line-height: 1.45;
+  font-family: var(--f-texte);
+  font-size: calc(17px * var(--scale));
+  line-height: 1.5;
   color: var(--text);
   background: var(--bg);
   -webkit-text-size-adjust: 100%;
@@ -48,18 +75,22 @@ body {
 
 h1,
 h2,
-h3 {
-  line-height: 1.2;
+h3,
+h4 {
+  font-family: var(--f-titre);
+  font-weight: 700;
+  line-height: 1.15;
   margin: 0 0 0.5em;
+  text-wrap: balance;
 }
 h1 {
-  font-size: 1.6rem;
+  font-size: 1.85rem;
 }
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.45rem;
 }
 h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 p {
   margin: 0 0 0.75em;
@@ -69,15 +100,31 @@ a {
   color: var(--primary);
 }
 
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ar {
+  font-family: var(--f-arabe);
+  font-weight: 500;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
 button,
 .btn {
   font: inherit;
+  font-weight: 700;
   min-height: var(--tap);
-  padding: 0.5em 1em;
-  border-radius: var(--radius);
+  padding: 0.45em 1.15em;
+  border-radius: 999px;
   border: 2px solid var(--primary);
   background: var(--primary);
-  color: #fff;
+  color: var(--email);
   cursor: pointer;
   touch-action: manipulation;
   display: inline-flex;
@@ -93,6 +140,12 @@ button:active,
 .btn:active {
   transform: scale(0.97);
 }
+button:focus-visible,
+.btn:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--or);
+  outline-offset: 2px;
+}
 button:disabled,
 .btn[aria-disabled='true'] {
   opacity: 0.45;
@@ -102,7 +155,8 @@ button:disabled,
 button.secondary,
 .btn.secondary {
   background: var(--surface);
-  color: var(--primary);
+  color: var(--text);
+  border-color: var(--text);
 }
 button.ghost,
 .btn.ghost {
@@ -113,7 +167,7 @@ button.ghost,
 button.small,
 .btn.small {
   min-height: calc(var(--tap) * 0.8);
-  padding: 0.3em 0.7em;
+  padding: 0.25em 0.8em;
   font-size: 0.9em;
 }
 
@@ -121,9 +175,10 @@ input[type='text'],
 input[type='number'] {
   font: inherit;
   min-height: var(--tap);
-  padding: 0.4em 0.7em;
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
+  padding: 0.4em 0.75em;
+  border: 1px solid var(--border);
+  border-bottom: 2px solid var(--text);
+  border-radius: 4px 4px 0 0;
   background: var(--surface);
   color: var(--text);
   width: 100%;
@@ -131,21 +186,23 @@ input[type='number'] {
 }
 input[type='text']:focus,
 input[type='number']:focus {
-  outline: none;
-  border-color: var(--primary);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .card {
   background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1rem;
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 16px 24px;
+  padding-inline: 16px;
+  padding-block: 0 32px;
 }
 :root.projection .container {
   max-width: 1600px;
@@ -175,9 +232,10 @@ input[type='number']:focus {
 
 .feedback {
   border-radius: var(--radius);
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   margin: 0.75rem 0;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
+  border-left-width: 4px;
 }
 .feedback.ok {
   background: var(--ok-soft);
@@ -215,7 +273,7 @@ svg {
   height: auto;
 }
 svg text {
-  font-family: inherit;
+  font-family: var(--f-titre);
 }
 
 .visually-hidden {

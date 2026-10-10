@@ -43,7 +43,7 @@ export function checkShot(level: LanceLevel, a: number, b: number, c: number, to
   } else if (level.vertex) vertexOk = false;
 
   const msgs: string[] = [];
-  if (a === 0) msgs.push('Avec a = 0 la trajectoire est une droite, pas une parabole.');
+  if (a === 0) msgs.push('Avec a = 0, le jet serait une droite, pas une parabole.');
   targetsHit.forEach((h, i) => {
     if (!h) {
       const t = level.targets[i];
@@ -56,8 +56,8 @@ export function checkShot(level: LanceLevel, a: number, b: number, c: number, to
     if (missing.length > 0 || extraRoot) {
       msgs.push(
         roots.length === 0
-          ? 'La courbe ne touche pas le sol : Δ < 0.'
-          : `Le projectile touche le sol en ${roots.map(fmt).join(' et ')} au lieu de ${level.landings.join(' et ')}.`,
+          ? 'Le jet ne touche pas le sol : Δ < 0.'
+          : `L\'eau touche le sol en ${roots.map(fmt).join(' et ')} au lieu de ${level.landings.join(' et ')}.`,
       );
     }
   }

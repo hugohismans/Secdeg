@@ -27,7 +27,7 @@
   {#if !cut}
     <div class="eq"><Tex tex={GEN.eqDivA} display /></div>
     <p>Même geste qu'avant : on coupe la bande <Tex tex={BX('\\tfrac{b}{a}')} /> en deux bandes égales. La moitié de <Tex tex={'\\tfrac{b}{a}'} />, c'est <Tex tex={BX('\\tfrac{b}{2a}')} />.</p>
-    <div class="actions"><button onclick={() => (cut = true)}>✂️ Couper en deux</button></div>
+    <div class="actions"><button onclick={() => (cut = true)}>Couper en deux</button></div>
   {:else}
     <div class="eq"><Tex tex={`x^2 + ${hl(BX('\\frac{b}{2a}x') + ' + ' + BX('\\frac{b}{2a}x'))} = -\\frac{c}{a}`} display /></div>
     <div class="eq side"><span class="lbl">Dans l'exemple</span><Tex tex={EX.eqCut} /></div>

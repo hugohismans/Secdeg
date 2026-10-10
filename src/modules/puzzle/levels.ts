@@ -19,9 +19,9 @@ export interface Level {
 
 export const LEVELS: Level[] = [
   { title: 'Premier carré', subtitle: 'x² + 4x = 5', kind: 'tiles', q: quad(1, 4, -5) },
-  { title: 'Comme dans la leçon', subtitle: 'x² + 6x = 16', kind: 'tiles', q: quad(1, 6, -16) },
+  { title: 'Six racines', subtitle: 'x² + 6x = 16', kind: 'tiles', q: quad(1, 6, -16) },
   { title: 'Plus large', subtitle: 'x² + 8x = 9', kind: 'tiles', q: quad(1, 8, -9) },
-  { title: 'Coin de 25', subtitle: 'x² + 10x = 11', kind: 'tiles', q: quad(1, 10, -11) },
+  { title: 'Le problème du maître', subtitle: 'x² + 10x = 39', kind: 'tiles', q: quad(1, 10, -39) },
   { title: 'Déplacer c', subtitle: 'x² + 6x + 5 = 0', kind: 'tiles-move-c', q: quad(1, 6, 5) },
   { title: 'Sans tuiles', subtitle: 'x² + 8x + 12 = 0', kind: 'symbolic', q: quad(1, 8, 12) },
   { title: 'b négatif', subtitle: 'x² − 6x + 5 = 0', kind: 'symbolic', q: quad(1, -6, 5) },

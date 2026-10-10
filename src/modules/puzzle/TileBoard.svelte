@@ -101,8 +101,8 @@
 <div class="board" style="--snap: {PUZZLE.snapPx}px">
   <svg bind:this={svgEl} viewBox="0 0 {W} {H}" role="img" aria-label="Plateau de tuiles">
     <!-- carré x² -->
-    <rect x={sq.x} y={sq.y} width={X} height={X} fill={COLORS.x2} stroke="#fff" stroke-width="2" rx="2" />
-    <text x={sq.x + X / 2} y={sq.y + X / 2} fill="#fff" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-style="italic">x²</text>
+    <rect x={sq.x} y={sq.y} width={X} height={X} fill={COLORS.x2} stroke={COLORS.glaze} stroke-width="2" rx="2" />
+    <text x={sq.x + X / 2} y={sq.y + X / 2} fill={COLORS.glaze} font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-style="italic">x²</text>
 
     <!-- zones de dépôt -->
     {#if pool > 0 && !disabled}
@@ -114,16 +114,16 @@
     {#each Array(board.right) as _, i}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <g class="tile" onclick={() => !disabled && removeRight()}>
-        <rect x={M + X + i * U} y={M} width={U} height={X} fill={COLORS.bx} stroke="#fff" stroke-width="2" rx="2" />
-        <text x={M + X + i * U + U / 2} y={M + X / 2} fill="#fff" font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 {M + X + i * U + U / 2} {M + X / 2})">x</text>
+        <rect x={M + X + i * U} y={M} width={U} height={X} fill={COLORS.bx} stroke={COLORS.glaze} stroke-width="2" rx="2" />
+        <text x={M + X + i * U + U / 2} y={M + X / 2} fill={COLORS.glaze} font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 {M + X + i * U + U / 2} {M + X / 2})">x</text>
       </g>
     {/each}
     <!-- bandes placées en dessous -->
     {#each Array(board.bottom) as _, i}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <g class="tile" onclick={() => !disabled && removeBottom()}>
-        <rect x={M} y={M + X + i * U} width={X} height={U} fill={COLORS.bx} stroke="#fff" stroke-width="2" rx="2" />
-        <text x={M + X / 2} y={M + X + i * U + U / 2} fill="#fff" font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle">x</text>
+        <rect x={M} y={M + X + i * U} width={X} height={U} fill={COLORS.bx} stroke={COLORS.glaze} stroke-width="2" rx="2" />
+        <text x={M + X / 2} y={M + X + i * U + U / 2} fill={COLORS.glaze} font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle">x</text>
       </g>
     {/each}
 
@@ -137,30 +137,30 @@
         class="tile"
         x={cell.x + 1} y={cell.y + 1} width={U - 2} height={U - 2}
         fill={cell.filled ? COLORS.corner : 'transparent'}
-        stroke={cell.filled ? '#fff' : 'none'}
+        stroke={cell.filled ? COLORS.glaze : 'none'}
         rx="2"
         onclick={() => !disabled && (cell.filled ? removeUnit() : addUnit())}
       />
     {/each}
 
     <!-- réserve -->
-    <text x={poolX + 1.5 * U} y={M - 4} font-size="12" fill="#4a5568" text-anchor="middle">Réserve</text>
+    <text x={poolX + 1.5 * U} y={M - 4} font-size="12" fill={COLORS.inkSoft} text-anchor="middle">Réserve</text>
     {#if pool > 0}
       {#each Array(Math.min(pool, 10)) as _, i}
-        <rect x={poolX + i * 3} y={M + i * 2} width={U} height={X} fill={COLORS.bx} stroke="#fff" stroke-width="2" rx="2" opacity={i === Math.min(pool, 10) - 1 ? 0 : 1} />
+        <rect x={poolX + i * 3} y={M + i * 2} width={U} height={X} fill={COLORS.bx} stroke={COLORS.glaze} stroke-width="2" rx="2" opacity={i === Math.min(pool, 10) - 1 ? 0 : 1} />
       {/each}
       <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
       <g class="grab" use:draggable={dragOpts('x')} role="button" tabindex="0" aria-label="Bande x à glisser" style="transform: translate({drag?.kind === 'x' ? drag.x - U / 2 : poolX + (Math.min(pool, 10) - 1) * 3}px, {drag?.kind === 'x' ? drag.y - X / 2 : M + (Math.min(pool, 10) - 1) * 2}px)" class:lifted={drag?.kind === 'x'}>
-        <rect x="0" y="0" width={U} height={X} fill={COLORS.bx} stroke="#fff" stroke-width="2" rx="2" />
-        <text x={U / 2} y={X / 2} fill="#fff" font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 {U / 2} {X / 2})">x</text>
+        <rect x="0" y="0" width={U} height={X} fill={COLORS.bx} stroke={COLORS.glaze} stroke-width="2" rx="2" />
+        <text x={U / 2} y={X / 2} fill={COLORS.glaze} font-size="13" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 {U / 2} {X / 2})">x</text>
       </g>
       <text x={poolX + U / 2 + 14} y={M + X + 16} font-size="13" fill={COLORS.bx} font-weight="700" text-anchor="middle">× {pool}</text>
     {/if}
     <!-- tuile unité (réserve illimitée) -->
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <g class="grab" use:draggable={dragOpts('unit')} role="button" tabindex="0" aria-label="Tuile unité à glisser dans le coin" style="transform: translate({drag?.kind === 'unit' ? drag.x - U / 2 : poolX + 2 * U}px, {drag?.kind === 'unit' ? drag.y - U / 2 : M}px)" class:lifted={drag?.kind === 'unit'}>
-      <rect x="0" y="0" width={U} height={U} fill={COLORS.corner} stroke="#fff" stroke-width="2" rx="2" />
-      <text x={U / 2} y={U / 2} fill="#fff" font-size="12" text-anchor="middle" dominant-baseline="middle">1</text>
+      <rect x="0" y="0" width={U} height={U} fill={COLORS.corner} stroke={COLORS.glaze} stroke-width="2" rx="2" />
+      <text x={U / 2} y={U / 2} fill={COLORS.glaze} font-size="12" text-anchor="middle" dominant-baseline="middle">1</text>
     </g>
     <text x={poolX + 2.5 * U} y={M + U + 16} font-size="13" fill={COLORS.corner} font-weight="700" text-anchor="middle">× ∞</text>
   </svg>

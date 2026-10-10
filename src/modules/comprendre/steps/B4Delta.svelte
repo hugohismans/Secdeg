@@ -18,7 +18,7 @@
 
   function check(v: string) {
     tries++;
-    deltaOk = matchesValue(v, 100);
+    deltaOk = matchesValue(v, 256);
   }
 </script>
 
@@ -39,14 +39,14 @@
     </div>
     <div class="eq"><Tex tex={GEN.eqDelta} display /></div>
 
-    <p><strong>À toi :</strong> dans l'exemple <Tex tex="x^2 + 6x - 16 = 0" /> (<Tex tex="a = 1, b = 6, c = -16" />), calcule <Tex tex={DL('\\Delta')} />.</p>
+    <p><strong>À toi :</strong> dans l'exemple <Tex tex="x^2 + 10x - 39 = 0" /> (<Tex tex="a = 1, b = 10, c = -39" />), calcule <Tex tex={DL('\\Delta')} />.</p>
     {#if !deltaOk}
       <AnswerInput placeholder="Δ = b² − 4ac" onsubmit={check} />
       {#if tries > 0}
-        <div class="feedback ko">✘ Attention aux signes : <Tex tex="\Delta = 6^2 - 4 \times 1 \times (-16)" />. Moins fois moins donne plus.</div>
+        <div class="feedback ko">✘ Attention aux signes : <Tex tex="\Delta = 10^2 - 4 \times 1 \times (-39)" />. Moins fois moins donne plus.</div>
       {/if}
     {:else}
-      <div class="feedback ok">✔ <Tex tex="\Delta = 36 + 64 = 100" />, et <Tex tex={'\\tfrac{\\Delta}{4a^2} = \\tfrac{100}{4} = 25'} /> : exactement l'aire du grand carré trouvée tout à l'heure !</div>
+      <div class="feedback ok">✔ <Tex tex="\Delta = 100 + 156 = 256" />, et <Tex tex={'\\tfrac{\\Delta}{4a^2} = \\tfrac{256}{4} = 64'} /> : exactement l'aire du grand carré trouvée tout à l'heure !</div>
     {/if}
   {/if}
 </StepLayout>

@@ -22,9 +22,9 @@ export interface LanceLevel {
 
 export const LEVELS: LanceLevel[] = [
   {
-    title: 'Première cible',
-    subtitle: '1 cible',
-    text: 'Règle a, b et c pour que la trajectoire passe par la cible.',
+    title: 'Premier anneau',
+    subtitle: '1 anneau',
+    text: 'Règle a, b et c pour que le jet passe dans l\'anneau.',
     targets: [{ x: 2, y: 3 }],
     landings: [],
     start: { a: -0.5, b: 0, c: 0 },
@@ -35,9 +35,9 @@ export const LEVELS: LanceLevel[] = [
     ],
   },
   {
-    title: 'Deux cibles',
-    subtitle: '2 cibles',
-    text: 'La trajectoire doit passer par les deux cibles.',
+    title: 'Deux anneaux',
+    subtitle: '2 anneaux',
+    text: 'Le jet doit traverser les deux anneaux.',
     targets: [
       { x: -2, y: 1 },
       { x: 2, y: 3 },
@@ -51,9 +51,9 @@ export const LEVELS: LanceLevel[] = [
     ],
   },
   {
-    title: 'Atterrissage',
+    title: 'D\'un bassin à l\'autre',
     subtitle: 'racines −1 et 3',
-    text: 'Le projectile doit toucher le sol exactement en x = −1 et x = 3.',
+    text: 'L\'eau doit jaillir en x = −1 et retomber dans le bassin en x = 3.',
     targets: [],
     landings: [-1, 3],
     start: { a: -1, b: 0, c: 0 },
@@ -64,9 +64,9 @@ export const LEVELS: LanceLevel[] = [
     ],
   },
   {
-    title: 'Cible et atterrissage',
-    subtitle: 'racines 1 et 5, cible (3 ; 4)',
-    text: 'Atterrir en x = 1 et x = 5, en passant par la cible.',
+    title: 'Anneau et bassins',
+    subtitle: 'racines 1 et 5, anneau (3 ; 4)',
+    text: 'Jaillir en x = 1, retomber en x = 5, en passant dans l\'anneau.',
     targets: [{ x: 3, y: 4 }],
     landings: [1, 5],
     start: { a: -1, b: 0, c: 0 },
@@ -79,7 +79,7 @@ export const LEVELS: LanceLevel[] = [
   {
     title: 'Sommet imposé',
     subtitle: 'sommet (2 ; 4), racines 0 et 4',
-    text: 'Le point le plus haut doit être S(2 ; 4) et le projectile atterrit en 0 et 4.',
+    text: 'Le jet culmine en S(2 ; 4) et relie les bassins en 0 et 4.',
     targets: [],
     landings: [0, 4],
     vertex: { x: 2, y: 4 },
@@ -92,8 +92,8 @@ export const LEVELS: LanceLevel[] = [
   },
   {
     title: 'Sommet et cible',
-    subtitle: 'sommet (−2 ; 1), cible (0 ; −3)',
-    text: 'Sommet en S(−2 ; 1), et la trajectoire passe par (0 ; −3).',
+    subtitle: 'sommet (−2 ; 1), anneau (0 ; −3)',
+    text: 'Sommet en S(−2 ; 1), et le jet passe dans l\'anneau (0 ; −3).',
     targets: [{ x: 0, y: -3 }],
     landings: [],
     vertex: { x: -2, y: 1 },
@@ -105,9 +105,9 @@ export const LEVELS: LanceLevel[] = [
     ],
   },
   {
-    title: 'Hauteur maximale',
+    title: 'Hauteur du jet',
     subtitle: 'racines −3 et 1, hauteur 4',
-    text: 'Atterrir en −3 et 1, et monter exactement à la hauteur 4.',
+    text: 'Relier les bassins en −3 et 1, avec un jet qui monte exactement à la hauteur 4.',
     targets: [],
     landings: [-3, 1],
     vertex: { y: 4 },
@@ -119,9 +119,9 @@ export const LEVELS: LanceLevel[] = [
     ],
   },
   {
-    title: 'Tournée vers le haut',
-    subtitle: 'sommet (1 ; −2), cible (3 ; 6)',
-    text: 'Cette fois a > 0 : sommet en S(1 ; −2), et passer par (3 ; 6).',
+    title: 'Le jet renversé',
+    subtitle: 'sommet (1 ; −2), anneau (3 ; 6)',
+    text: 'Cette fois a > 0, la courbe est tournée vers le haut : sommet en S(1 ; −2), et passer dans l\'anneau (3 ; 6).',
     targets: [{ x: 3, y: 6 }],
     landings: [],
     vertex: { x: 1, y: -2 },

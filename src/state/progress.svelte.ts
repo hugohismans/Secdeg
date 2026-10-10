@@ -10,16 +10,27 @@ interface ProgressData {
   best: Record<string, number>;
   comprendreStep: number;
   comprendreDone: boolean;
+  /** prénom choisi par l'élève (mode Histoire) */
+  name: string;
+  /** dernier chapitre de l'Histoire terminé (0 = aucun) */
+  storyDone: number;
 }
 
 const KEY = `${PROGRESS.storageKey}.progress`;
 
 const data = $state<ProgressData>(
-  loadJSON<ProgressData>(KEY, { stars: {}, best: {}, comprendreStep: 0, comprendreDone: false }),
+  loadJSON<ProgressData>(KEY, { stars: {}, best: {}, comprendreStep: 0, comprendreDone: false, name: '', storyDone: 0 }),
 );
 
 function persist() {
-  saveJSON(KEY, { stars: data.stars, best: data.best, comprendreStep: data.comprendreStep, comprendreDone: data.comprendreDone });
+  saveJSON(KEY, {
+    stars: data.stars,
+    best: data.best,
+    comprendreStep: data.comprendreStep,
+    comprendreDone: data.comprendreDone,
+    name: data.name,
+    storyDone: data.storyDone,
+  });
 }
 
 export const progress = {
@@ -71,11 +82,33 @@ export const progress = {
     data.comprendreDone = v;
     persist();
   },
+  get name() {
+    return data.name;
+  },
+  set name(v: string) {
+    data.name = v.slice(0, 24);
+    persist();
+  },
+  /** prénom à utiliser dans les dialogues */
+  get displayName() {
+    return data.name.trim() || 'apprenti·e';
+  },
+  get storyDone() {
+    return data.storyDone;
+  },
+  /** marque un chapitre terminé (ne recule jamais) */
+  finishChapter(n: number) {
+    if (n > data.storyDone) {
+      data.storyDone = n;
+      persist();
+    }
+  },
   reset() {
     data.stars = {};
     data.best = {};
     data.comprendreStep = 0;
     data.comprendreDone = false;
+    data.storyDone = 0;
     persist();
   },
 };

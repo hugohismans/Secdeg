@@ -9,27 +9,34 @@
 // parabole. Changer une couleur ici la change partout.
 // ---------------------------------------------------------------------------
 export const COLORS = {
-  /** x²  : le grand carré */
-  x2: '#2b6cb0',
-  /** bx : le rectangle / les deux bandes */
-  bx: '#dd6b20',
-  /** (b/2a)² : le petit coin manquant */
-  corner: '#2f855a',
-  /** c : le terme constant */
-  c: '#718096',
-  /** Δ : le discriminant */
-  delta: '#805ad5',
-  /** racines sur la parabole */
-  root: '#c53030',
+  /** x²  : le grand carré, le « mâl » (bleu de cobalt) */
+  x2: '#1f4c8f',
+  /** bx : le rectangle / les deux bandes, les « racines » (ambre de lustre) */
+  bx: '#a9661a',
+  /** (b/2a)² : le petit coin manquant (vert de cuivre) */
+  corner: '#2c7356',
+  /** c : le terme constant, les dirhams (encre douce) */
+  c: '#6a5846',
+  /** Δ : le discriminant (pourpre de manganèse) */
+  delta: '#6b3a73',
+  /** racines sur la parabole (garance) */
+  root: '#a33a28',
   /** sommet et axe de symétrie */
-  vertex: '#2f855a',
-  /** courbe de la parabole */
-  curve: '#2b4c9b',
-  /** cibles du lance-parabole */
-  target: '#e53e3e',
+  vertex: '#2c7356',
+  /** courbe de la parabole, jet d'eau */
+  curve: '#1f4c8f',
+  /** anneaux à traverser dans les fontaines */
+  target: '#a9661a',
   /** succès / erreur dans les feedbacks */
-  ok: '#2f855a',
-  ko: '#c53030',
+  ok: '#2c7356',
+  ko: '#a33a28',
+  /** papier et encre (pour les SVG) */
+  paper: '#f2e9d6',
+  glaze: '#fcf9f2',
+  ink: '#2b2018',
+  inkSoft: '#6a5846',
+  rule: '#d3c09c',
+  gold: '#a8822f',
 } as const;
 
 // ---------------------------------------------------------------------------

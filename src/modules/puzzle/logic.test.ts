@@ -45,6 +45,7 @@ describe('puzzle symbolique', () => {
     expect(steps[2].expected).toEqual([-3, 4]);
     expect(steps[3].expected).toEqual([1, 5]);
     expect(steps[2].after).toBe('\\left(x - 3\\right)^2 = 4');
+    expect(steps[1].template).toBe('x^2 - 6x + \\square = -5 + \\square');
   });
   it('2x² + 8x − 10 = 0 : étape diviser', () => {
     const steps = symbolicSteps(quad(2, 8, -10));

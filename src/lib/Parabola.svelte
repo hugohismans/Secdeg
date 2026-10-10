@@ -86,9 +86,9 @@
       <path d="M0,0 L10,5 L0,10 z" fill={COLORS.delta} />
     </marker>
   </defs>
-  <rect x="0" y="0" width={W} height={H} fill="white" rx="8" />
+  <rect x="0" y="0" width={W} height={H} fill={COLORS.glaze} rx="8" />
   {#if showGrid}
-    <g class="grid" stroke="#edf2f7" stroke-width="1">
+    <g class="grid" stroke="#ebe0c8" stroke-width="1">
       {#each ticks.xs as x}
         <line x1={sx(x)} y1={PAD} x2={sx(x)} y2={H - PAD} />
       {/each}
@@ -98,11 +98,11 @@
     </g>
   {/if}
   <!-- axes -->
-  <g stroke="#4a5568" stroke-width="1.5">
+  <g stroke={COLORS.inkSoft} stroke-width="1.5">
     {#if yMin <= 0 && yMax >= 0}<line x1={PAD} y1={sy(0)} x2={W - PAD} y2={sy(0)} />{/if}
     {#if xMin <= 0 && xMax >= 0}<line x1={sx(0)} y1={PAD} x2={sx(0)} y2={H - PAD} />{/if}
   </g>
-  <g class="ticks" font-size="12" fill="#4a5568" text-anchor="middle">
+  <g class="ticks" font-size="12" fill={COLORS.inkSoft} text-anchor="middle">
     {#each ticks.xs as x}
       {#if x !== 0 && x % tickEvery === 0 && yMin <= 0 && yMax >= 0}
         <text x={sx(x)} y={sy(0) + 14}>{x}</text>
@@ -139,7 +139,7 @@
   {#if showRoots && yMin <= 0 && yMax >= 0}
     {#each roots as r}
       {#if r >= xMin && r <= xMax}
-        <circle cx={sx(r)} cy={sy(0)} r="7" fill={COLORS.root} stroke="white" stroke-width="2" />
+        <circle cx={sx(r)} cy={sy(0)} r="7" fill={COLORS.root} stroke={COLORS.glaze} stroke-width="2" />
         <text x={sx(r)} y={sy(0) - 12} font-size="14" fill={COLORS.root} text-anchor="middle" font-weight="600">{fmt(r)}</text>
       {/if}
     {/each}
@@ -147,7 +147,7 @@
 
   <!-- sommet -->
   {#if showVertex && Number.isFinite(vx) && vx >= xMin && vx <= xMax && vy >= yMin && vy <= yMax}
-    <circle cx={sx(vx)} cy={sy(vy)} r="6" fill={COLORS.vertex} stroke="white" stroke-width="2" />
+    <circle cx={sx(vx)} cy={sy(vy)} r="6" fill={COLORS.vertex} stroke={COLORS.glaze} stroke-width="2" />
     <text x={sx(vx) + 10} y={sy(vy) + (a > 0 ? 18 : -10)} font-size="13" fill={COLORS.vertex}>S({fmt(vx)} ; {fmt(vy)})</text>
   {/if}
 

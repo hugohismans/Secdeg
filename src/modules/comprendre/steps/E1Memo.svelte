@@ -2,6 +2,7 @@
   import StepLayout from '../StepLayout.svelte';
   import Tex from '../../../lib/Tex.svelte';
   import { router } from '../../../router.svelte';
+  import { GAMES } from '../../../content/games';
   import { progress } from '../../../state/progress.svelte';
   import { COLORS } from '../../../config';
   import { DL, c as col } from '../tex';
@@ -45,17 +46,17 @@
       <p class="muted">Pratique pour vérifier ses racines ou les deviner de tête.</p>
     </div>
     <div class="card trap">
-      <h3>⚠️ Le piège du signe</h3>
+      <h3>Le piège du signe</h3>
       <p>Si <Tex tex="b" /> est négatif, <Tex tex="-b" /> est <strong>positif</strong>. Exemple avec <Tex tex="x^2 - 5x + 6 = 0" /> : <Tex tex="b = -5" />, donc</p>
       <Tex tex={`x = \\frac{${KO('-(-5)')} \\pm \\sqrt{25 - 24}}{2} = \\frac{${KO('5')} \\pm 1}{2}`} display />
       <p>et <Tex tex="b^2 = (-5)^2 = 25" />, toujours positif.</p>
     </div>
   </div>
-  <div class="feedback ok">🎉 Tu as terminé le module « Comprendre ». À toi de jouer !</div>
+  <div class="feedback ok">Tu as terminé le Cours. À toi de jouer !</div>
   <div class="actions">
-    <a class="btn" href={router.href('rapidite')}>⚡ Rapidité</a>
-    <a class="btn secondary" href={router.href('puzzle')}>🧩 Puzzle de tuiles</a>
-    <a class="btn secondary" href={router.href('lance')}>🎯 Lance-parabole</a>
+    <a class="btn" href={router.href('rapidite')}>{GAMES.rapidite.title}</a>
+    <a class="btn secondary" href={router.href('puzzle')}>{GAMES.puzzle.title}</a>
+    <a class="btn secondary" href={router.href('lance')}>{GAMES.lance.title}</a>
   </div>
 </StepLayout>
 

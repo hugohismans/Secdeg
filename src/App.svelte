@@ -1,7 +1,10 @@
 <script lang="ts">
   import { router } from './router.svelte';
   import { settings } from './state/settings.svelte';
+  import Emblem from './lib/Emblem.svelte';
   import Home from './modules/home/Home.svelte';
+  import Cours from './modules/cours/Cours.svelte';
+  import Histoire from './modules/histoire/Histoire.svelte';
   import Comprendre from './modules/comprendre/Comprendre.svelte';
   import Projection from './modules/projection/Projection.svelte';
   import Rapidite from './modules/rapidite/Rapidite.svelte';
@@ -10,28 +13,38 @@
 
   let route = $derived(router.route);
   let isHome = $derived(route.page === '');
+  let inStory = $derived(route.page === 'histoire');
 </script>
 
 <header class="top">
-  <div class="container row between">
+  <div class="container bar">
     <a href={router.href('')} class="brand" aria-label="Accueil">
-      <span class="logo">x²</span>
-      <span>Second degré</span>
+      <Emblem size="1.9em" />
+      <span class="name">Le livre de la restauration</span>
     </a>
-    <div class="row">
+    <nav class="row nav">
       {#if settings.projection}
-        <span class="badge">Mode projection</span>
+        <span class="badge">Projection</span>
       {/if}
       {#if !isHome}
+        {#if inStory}
+          <a class="btn ghost small" href={router.href('cours')}>Le Cours</a>
+        {:else}
+          <a class="btn ghost small" href={router.href('histoire')}>L'Histoire</a>
+        {/if}
         <a class="btn ghost small" href={router.href('')}>Accueil</a>
       {/if}
-    </div>
+    </nav>
   </div>
 </header>
 
 <main class="container">
   {#if route.page === ''}
     <Home />
+  {:else if route.page === 'cours'}
+    <Cours />
+  {:else if route.page === 'histoire'}
+    <Histoire chapter={Number(route.segments[1] ?? '') || 0} />
   {:else if route.page === 'comprendre'}
     <Comprendre step={Number(route.segments[1] ?? '') || 0} />
   {:else if route.page === 'projection'}
@@ -44,7 +57,7 @@
     <LanceParabole level={Number(route.segments[1] ?? '') || 0} />
   {:else}
     <div class="card">
-      <p>Page introuvable.</p>
+      <p>Cette page n'existe pas.</p>
       <a class="btn" href={router.href('')}>Retour à l'accueil</a>
     </div>
   {/if}
@@ -52,44 +65,60 @@
 
 <style>
   .top {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
+    background: var(--papier);
+    border-bottom: 1px solid var(--filet);
+    margin-bottom: 1.25rem;
     position: sticky;
     top: 0;
     z-index: 5;
   }
-  .top .container {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-block: 0.35rem;
     min-height: var(--tap);
   }
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
+    gap: 0.55rem;
     text-decoration: none;
-    color: var(--text);
+    color: var(--encre);
+    min-width: 0;
   }
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2em;
-    height: 2em;
-    border-radius: 8px;
-    background: var(--primary);
-    color: #fff;
-    font-family: 'KaTeX_Math', serif;
-    font-style: italic;
+  .name {
+    font-family: var(--f-titre);
+    font-weight: 700;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav {
+    gap: 0.1rem;
+    flex-wrap: nowrap;
   }
   .badge {
     background: var(--warn-soft);
-    color: var(--warn);
+    color: var(--ambre);
     border-radius: 999px;
-    padding: 0.2em 0.7em;
+    padding: 0.15em 0.7em;
     font-size: 0.85em;
-    font-weight: 600;
+    font-weight: 700;
+  }
+  @media (max-width: 520px) {
+    .name {
+      font-size: 0.95rem;
+    }
+    .nav :global(.btn.small) {
+      padding-inline: 0.5em;
+    }
+  }
+  @media (max-width: 400px) {
+    .name {
+      display: none;
+    }
   }
 </style>

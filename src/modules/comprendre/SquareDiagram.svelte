@@ -119,14 +119,14 @@
   }
   let bandArea = $derived(areaOf(labels.half));
   let bandAreaFrac = $derived(labels.half.includes('/'));
-  let stroke = '#fff';
+  let stroke: string = COLORS.glaze;
 </script>
 
 <svg bind:this={svgEl} viewBox="0 0 {W} {H}" class="diagram" class:dragging={drag !== null} style="--slide-ms: {ANIM.slide}ms; --corner-ms: {ANIM.cornerAppear}ms" role="img" aria-label="Complétion du carré">
   <!-- carré x² -->
   <rect x={square.x} y={square.y} width={square.w} height={square.h} fill={COLORS.x2} {stroke} stroke-width="2" rx="2" />
   {#if showAreas}
-    <SvgLabel text="{labels.x}²" x={square.x + S / 2} y={square.y + S / 2} fill="#fff" size={24} />
+    <SvgLabel text="{labels.x}²" x={square.x + S / 2} y={square.y + S / 2} fill={COLORS.glaze} size={24} />
   {/if}
   <SvgLabel text={labels.x} x={square.x - 14} y={square.y + S / 2} fill={COLORS.x2} anchor="end" />
   <SvgLabel text={labels.x} x={square.x + S / 2} y={square.y - 14} fill={COLORS.x2} />
@@ -144,7 +144,7 @@
   {#if stage === 'initial'}
     <rect x={rectInit.x} y={rectInit.y} width={rectInit.w} height={rectInit.h} fill={COLORS.bx} {stroke} stroke-width="2" rx="2" />
     {#if showAreas}
-      <SvgLabel text={areaOf(labels.full)} x={rectInit.x + Hh} y={rectInit.y + S / 2} fill="#fff" size={labels.full.includes('/') ? 16 : 20} />
+      <SvgLabel text={areaOf(labels.full)} x={rectInit.x + Hh} y={rectInit.y + S / 2} fill={COLORS.glaze} size={labels.full.includes('/') ? 16 : 20} />
     {/if}
     <SvgLabel text={labels.full} x={rectInit.x + Hh} y={rectInit.y - 14} fill={COLORS.bx} />
     <SvgLabel text={labels.x} x={rectInit.x + rectInit.w + 12} y={rectInit.y + S / 2} fill={COLORS.bx} anchor="start" />
@@ -178,10 +178,10 @@
         <rect x="0" y="0" width={bb.w} height={bb.h} fill={COLORS.bx} {stroke} stroke-width="2" rx="2" />
         {#if showAreas}
           {#if bb.w > bb.h}
-            <SvgLabel text={bandArea} x={bb.w / 2} y={bb.h / 2} fill="#fff" size={bandAreaFrac ? 14 : 18} />
+            <SvgLabel text={bandArea} x={bb.w / 2} y={bb.h / 2} fill={COLORS.glaze} size={bandAreaFrac ? 14 : 18} />
           {:else}
             <g style="transform: translate({bb.w / 2}px, {bb.h / 2}px) rotate(-90deg)">
-              <SvgLabel text={bandArea} x={0} y={0} fill="#fff" size={bandAreaFrac ? 14 : 18} />
+              <SvgLabel text={bandArea} x={0} y={0} fill={COLORS.glaze} size={bandAreaFrac ? 14 : 18} />
             </g>
           {/if}
         {/if}
@@ -205,7 +205,7 @@
   {#if stage === 'completed'}
     <rect class="corner-fill" x={corner.x} y={corner.y} width={corner.w} height={corner.h} fill={COLORS.corner} {stroke} stroke-width="2" rx="2" />
     {#if showAreas}
-      <SvgLabel text={labels.corner} x={corner.x + Hh / 2} y={corner.y + Hh / 2} fill="#fff" size={labels.corner.includes('/') ? 13 : 18} />
+      <SvgLabel text={labels.corner} x={corner.x + Hh / 2} y={corner.y + Hh / 2} fill={COLORS.glaze} size={labels.corner.includes('/') ? 13 : 18} />
     {/if}
   {:else if allPlaced && (showCornerHint || cornerClickable)}
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -262,10 +262,10 @@
   }
   @keyframes pulse {
     from {
-      stroke: #fff;
+      stroke: #fcf9f2;
     }
     to {
-      stroke: #fbd38d;
+      stroke: #e2b866;
       stroke-width: 4;
     }
   }

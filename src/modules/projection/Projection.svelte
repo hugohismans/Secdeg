@@ -42,12 +42,12 @@
   <p class="muted">Texte et éléments agrandis, sans chrono ni score. Idéal pour projeter au tableau.</p>
   <div class="menu">
     <a class="card item" href={router.href('comprendre/0')}>
-      <span class="icon">📐</span>
+      
       <span class="title">Comprendre la formule</span>
       <span class="muted">Complétion du carré, de l'exemple à la formule générale, en 12 étapes.</span>
     </a>
     <a class="card item" href={router.href('projection/parabole')}>
-      <span class="icon">📈</span>
+      
       <span class="title">Parabole à curseurs</span>
       <span class="muted">a, b, c en direct : Δ, racines, axe de symétrie, sommet.</span>
     </a>
@@ -83,9 +83,6 @@
     text-decoration: none;
     color: var(--text);
     padding: 1.5rem;
-  }
-  .icon {
-    font-size: 2.2em;
   }
   .title {
     font-weight: 700;

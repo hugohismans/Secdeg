@@ -1,94 +1,165 @@
 <script lang="ts">
   import { router } from '../../router.svelte';
   import { progress } from '../../state/progress.svelte';
-  import { settings } from '../../state/settings.svelte';
-  import Stars from '../../lib/Stars.svelte';
+  import Frieze from '../../lib/Frieze.svelte';
+  import { STORY_CHAPTERS } from '../histoire/chapters';
 
-  const games = [
-    { key: 'rapidite', path: 'rapidite', icon: '⚡', title: 'Rapidité', text: '0, 1 ou 2 solutions ? Δ de tête ? Réponds vite.' },
-    { key: 'puzzle', path: 'puzzle', icon: '🧩', title: 'Puzzle de tuiles', text: 'Complète le carré avec des tuiles x², x et 1.' },
-    { key: 'lance', path: 'lance', icon: '🎯', title: 'Lance-parabole', text: 'Règle a, b, c pour toucher les cibles.' },
-  ];
+  let name = $state(progress.name);
+  function saveName() {
+    progress.name = name;
+  }
+  let next = $derived(Math.min(progress.storyDone + 1, STORY_CHAPTERS.length));
+  let storyLabel = $derived(
+    progress.storyDone >= STORY_CHAPTERS.length
+      ? 'Revoir la carte'
+      : progress.storyDone > 0
+        ? `Reprendre au chapitre ${next}`
+        : 'Commencer le chapitre 1',
+  );
 </script>
 
-<section class="hero card">
-  <h1>Équations du second degré</h1>
-  <p class="muted">Comprendre d'où vient la formule, puis s'entraîner en jouant.</p>
-  <div class="row">
-    <a class="btn big" href={router.href('comprendre/' + progress.comprendreStep)}>
-      📐 {progress.comprendreStep > 0 && !progress.comprendreDone ? 'Reprendre « Comprendre »' : 'Comprendre la formule'}
-    </a>
-    {#if progress.comprendreDone}<span class="ok">✔ Module terminé</span>{/if}
+<section class="screen">
+  <Frieze height={22} />
+  <div class="home">
+    <div class="head">
+      <span class="ar big" lang="ar">الجبر والمقابلة</span>
+      <h1>Le livre de la restauration</h1>
+      <p class="sub">Bagdad, an 820. Apprends l'algèbre là où elle est née.</p>
+    </div>
+
+    <div class="name">
+      <label for="prenom">Ton prénom :</label>
+      <input id="prenom" type="text" bind:value={name} oninput={saveName} placeholder="Yasmine, Lucas…" autocomplete="off" maxlength="24" />
+    </div>
+
+    <div class="modes">
+      <article class="mode story">
+        <svg class="star-bg" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 4 L61 39 L96 50 L61 61 L50 96 L39 61 L4 50 L39 39 Z" />
+          <path d="M50 18 L73 27 L82 50 L73 73 L50 82 L27 73 L18 50 L27 27 Z" />
+        </svg>
+        <span class="eyebrow">L'Histoire</span>
+        <h2>Entrer à la Maison de la Sagesse</h2>
+        <p>Sept chapitres. Tu découvres le carré, la racine et Δ aux côtés d'al-Khwârizmî, en jouant.</p>
+        <a class="btn solid" href={router.href(progress.storyDone > 0 ? 'histoire' : 'histoire/1')} onclick={saveName}>{storyLabel}</a>
+      </article>
+      <article class="mode">
+        <span class="eyebrow">Le Cours</span>
+        <h2>Le cours, sans détour</h2>
+        <p>Douze étapes pour comprendre d'où vient la formule. Pour réviser seul ou projeter en classe.</p>
+        <a class="btn secondary" href={router.href('cours')}>Ouvrir le cours</a>
+      </article>
+    </div>
   </div>
 </section>
 
-<h2>Jeux</h2>
-<div class="games">
-  {#each games as g}
-    <a class="card game" href={router.href(g.path)}>
-      <span class="icon">{g.icon}</span>
-      <span class="title">{g.title}</span>
-      <span class="muted text">{g.text}</span>
-      {#if g.key === 'rapidite'}
-        <span class="muted small">Record : {progress.best('rapidite:count')} pts</span>
-      {:else}
-        <Stars value={progress.totalStars(g.key)} max={Math.max(3, progress.totalStars(g.key))} size="0.9em" />
-      {/if}
-    </a>
-  {/each}
-</div>
-
-<h2>Pour le prof</h2>
-<div class="card row between">
-  <div>
-    <strong>Mode projection</strong>
-    <p class="muted" style="margin:0">Texte et éléments agrandis, sans chrono ni score, pour le tableau.</p>
-  </div>
-  <div class="row">
-    <label class="row"><input type="checkbox" bind:checked={settings.projection} /> Activer</label>
-    <a class="btn secondary" href={router.href('projection')}>Ouvrir</a>
-  </div>
-</div>
-
 <style>
-  .hero {
-    margin-bottom: 1.25rem;
+  .screen {
+    background: var(--email);
+    border: 1px solid var(--filet);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .home {
+    padding: 2rem clamp(1rem, 4vw, 3rem) 2.25rem;
+    display: grid;
+    gap: 1.6rem;
+  }
+  .head {
+    display: grid;
+    gap: 0.3rem;
+    text-align: center;
+    justify-items: center;
   }
   .big {
-    font-size: 1.1em;
+    font-size: clamp(2rem, 6vw, 3.1rem);
+    color: var(--cobalt);
+    line-height: 1.25;
   }
-  .games {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
+  .head h1 {
+    font-size: clamp(1.9rem, 5.5vw, 3rem);
+    font-weight: 800;
+    margin: 0;
   }
-  .game {
+  .sub {
+    color: var(--encre-douce);
+    font-family: var(--f-titre);
+    font-style: italic;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .name {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: transform 0.1s ease;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
   }
-  .game:active {
-    transform: scale(0.98);
+  .name label {
+    font-family: var(--f-titre);
+    font-size: 1.15rem;
   }
-  .icon {
-    font-size: 1.8em;
+  .name input {
+    width: 13em;
+    font-size: 1.1rem;
+    background: var(--papier);
   }
-  .title {
-    font-weight: 700;
-    font-size: 1.1em;
+  .modes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
   }
-  .text {
-    font-size: 0.95em;
+  .mode {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.5rem;
+    padding: 1.3rem 1.3rem 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--filet);
+    background: var(--papier);
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
   }
-  .small {
-    font-size: 0.85em;
+  .mode h2 {
+    font-size: 1.6rem;
+    margin: 0;
   }
-  input[type='checkbox'] {
-    width: 1.4em;
-    height: 1.4em;
+  .mode p {
+    margin: 0;
+  }
+  .mode .btn {
+    justify-self: start;
+  }
+  .story {
+    background: var(--cobalt);
+    border-color: var(--cobalt);
+    color: var(--email);
+  }
+  .story .eyebrow {
+    color: #c9d5ea;
+  }
+  .story p {
+    color: #dfe6f3;
+  }
+  .btn.solid {
+    background: var(--email);
+    color: var(--cobalt);
+    border-color: var(--email);
+  }
+  .star-bg {
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    width: 190px;
+    height: 190px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .star-bg path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
   }
 </style>
