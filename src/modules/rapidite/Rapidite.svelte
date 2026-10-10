@@ -112,6 +112,7 @@
 
   let priority = $derived(errorTracker.priority());
   let deltaTex = $derived(question ? equationLatex(question.q) : '');
+  let win = $derived(question ? graphWindow(question.q) : { xMin: -8, xMax: 8, yMin: -8, yMax: 8 });
 </script>
 
 {#if !activeMode || phase === 'idle'}
@@ -160,8 +161,7 @@
         <div class="eq"><Tex tex={deltaTex} display /></div>
       {:else}
         <div class="graph">
-          {@const w = graphWindow(question.q)}
-          <Parabola a={toNumber(question.q.a)} b={toNumber(question.q.b)} c={toNumber(question.q.c)} showRoots={false} showGrid={false} xMin={w.xMin} xMax={w.xMax} yMin={w.yMin} yMax={w.yMax} aspect={0.6} />
+          <Parabola a={toNumber(question.q.a)} b={toNumber(question.q.b)} c={toNumber(question.q.c)} showRoots={false} showGrid={false} xMin={win.xMin} xMax={win.xMax} yMin={win.yMin} yMax={win.yMax} aspect={0.6} />
         </div>
       {/if}
     {:else}
