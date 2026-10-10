@@ -1,0 +1,235 @@
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #1a202c;
+  --muted: #4a5568;
+  --border: #e2e8f0;
+  --primary: #2b4c9b;
+  --primary-soft: #e3e9f8;
+  --ok: #2f855a;
+  --ok-soft: #e6f4ea;
+  --ko: #c53030;
+  --ko-soft: #fde8e8;
+  --warn: #b7791f;
+  --warn-soft: #fef6e4;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
+  --tap: 44px;
+  --scale: 1;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+  font-size: calc(16px * var(--scale));
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Mode projection : tout est agrandi (facteur dans config.ts, appliqué par settings) */
+:root.projection {
+  --tap: 60px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  overscroll-behavior-y: contain;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.3rem;
+}
+h3 {
+  font-size: 1.1rem;
+}
+p {
+  margin: 0 0 0.75em;
+}
+
+a {
+  color: var(--primary);
+}
+
+button,
+.btn {
+  font: inherit;
+  min-height: var(--tap);
+  padding: 0.5em 1em;
+  border-radius: var(--radius);
+  border: 2px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  text-decoration: none;
+  transition: transform 0.08s ease, background 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:active,
+.btn:active {
+  transform: scale(0.97);
+}
+button:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+button.secondary,
+.btn.secondary {
+  background: var(--surface);
+  color: var(--primary);
+}
+button.ghost,
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--primary);
+}
+button.small,
+.btn.small {
+  min-height: calc(var(--tap) * 0.8);
+  padding: 0.3em 0.7em;
+  font-size: 0.9em;
+}
+
+input[type='text'],
+input[type='number'] {
+  font: inherit;
+  min-height: var(--tap);
+  padding: 0.4em 0.7em;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  width: 100%;
+  max-width: 100%;
+}
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px 24px;
+}
+:root.projection .container {
+  max-width: 1600px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.between {
+  justify-content: space-between;
+}
+.center {
+  text-align: center;
+}
+.muted {
+  color: var(--muted);
+}
+.ok {
+  color: var(--ok);
+}
+.ko {
+  color: var(--ko);
+}
+
+.feedback {
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0;
+  border: 2px solid transparent;
+}
+.feedback.ok {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+  color: var(--text);
+}
+.feedback.ko {
+  background: var(--ko-soft);
+  border-color: var(--ko);
+  color: var(--text);
+}
+.feedback.info {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--text);
+}
+.feedback.warn {
+  background: var(--warn-soft);
+  border-color: var(--warn);
+}
+
+.katex {
+  font-size: 1.1em;
+}
+.katex-display {
+  margin: 0.6em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2em 0;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+svg text {
+  font-family: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
