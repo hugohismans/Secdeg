@@ -24,7 +24,9 @@
     </a>
     <nav class="row nav">
       {#if settings.projection}
-        <span class="badge">Projection</span>
+        <button class="badge" onclick={() => (settings.projection = false)} aria-label="Quitter la projection" title="Quitter la projection">
+          Projection <span aria-hidden="true">×</span>
+        </button>
       {/if}
       {#if !isHome}
         {#if inStory}
@@ -103,10 +105,13 @@
   .badge {
     background: var(--warn-soft);
     color: var(--ambre);
+    border: 1px solid var(--ambre);
     border-radius: 999px;
-    padding: 0.15em 0.7em;
+    min-height: 0;
+    padding: 0.2em 0.75em;
     font-size: 0.85em;
     font-weight: 700;
+    white-space: nowrap;
   }
   @media (max-width: 520px) {
     .name {

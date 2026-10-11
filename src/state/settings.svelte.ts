@@ -14,7 +14,7 @@ function apply() {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
   root.classList.toggle('projection', data.projection);
-  root.style.setProperty('--scale', data.projection ? String(PROJECTION.scale) : '1');
+  root.style.setProperty('--proj-scale', String(PROJECTION.scale));
 }
 
 apply();

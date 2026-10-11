@@ -51,9 +51,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* Mode projection : tout est agrandi (facteur dans config.ts, appliqué par settings) */
+/* Mode projection : tout est agrandi (facteur dans config.ts, appliqué par settings).
+   Sur petit écran, l'agrandissement reste modéré pour que rien ne déborde. */
 :root.projection {
-  --tap: 60px;
+  --tap: 52px;
+  --scale: 1.15;
+}
+@media (min-width: 900px) {
+  :root.projection {
+    --tap: 60px;
+    --scale: var(--proj-scale, 1.6);
+  }
 }
 
 *,

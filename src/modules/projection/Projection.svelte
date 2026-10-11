@@ -3,6 +3,7 @@
    * Mode projection (prof) : active l'agrandissement global et donne un accès
    * direct au module Comprendre et à la parabole à curseurs, sans chrono ni score.
    */
+  import { onMount } from 'svelte';
   import { router } from '../../router.svelte';
   import { settings } from '../../state/settings.svelte';
   import ParabolaExplorer from '../../lib/ParabolaExplorer.svelte';
@@ -12,7 +13,9 @@
   }
   let { sub }: Props = $props();
 
-  $effect(() => {
+  // Activé une seule fois à l'arrivée sur la page. (Un $effect relisait l'état
+  // et réactivait le mode juste après « Quitter ».)
+  onMount(() => {
     settings.projection = true;
   });
 
