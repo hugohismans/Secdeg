@@ -186,6 +186,7 @@
   .chapter {
     max-width: 820px;
     margin: 0 auto;
+    min-width: 0;
   }
   .head {
     background: var(--email);
@@ -202,6 +203,7 @@
   }
   .flow {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
   }
   .beat {
@@ -251,6 +253,7 @@
     margin: 0.3rem 0 0;
   }
   .activity {
+    grid-template-columns: minmax(0, 1fr);
     background: var(--papier);
     border: 1px solid var(--filet);
     border-radius: var(--radius);

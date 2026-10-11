@@ -44,7 +44,7 @@ export const c3: Chapter = {
     { kind: 'say', who: 'maitre', text: 'Tu paries toujours les dattes de ton frère.' },
     { kind: 'narr', text: "Le maître a raison pour son époque : dans son livre, une racine est une longueur, donc positive. Mais Ahmad a raison aussi. Il faudra quelques siècles, mais les mathématiciens finiront par accepter les nombres négatifs comme de vraies solutions." },
     { kind: 'say', who: 'maitre', text: 'Bon. Notons-le dans la marge, pour ceux qui viendront après nous. Mais retiens ceci, {nom}, car c’est juste : deux nombres opposés ont le même carré.' },
-    { kind: 'math', tex: r`(x+5)^2 = 64 \;\Longrightarrow\; x + 5 = \pm 8 \;\Longrightarrow\; x = 3 \;\text{ ou }\; x = -13` },
+    { kind: 'math', tex: r`\begin{gathered} (x+5)^2 = 64 \\ \Longrightarrow\; x + 5 = \pm 8 \\ \Longrightarrow\; x = 3 \;\text{ ou }\; x = -13 \end{gathered}` },
     { kind: 'narr', text: 'Le signe $\\pm$ se lit « plus ou moins ». Il dit les deux possibilités d’un seul coup.' },
     {
       kind: 'input',

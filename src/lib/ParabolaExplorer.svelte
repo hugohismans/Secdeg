@@ -34,7 +34,11 @@
   let ex = $derived(q ? exactRoots(q) : []);
   let ax = $derived(q ? axis(q) : null);
   let vt = $derived(q ? vertex(q) : null);
-  let deltaTex = $derived(q ? `\\Delta = b^2 - 4ac = (${b})^2 - 4 \\cdot (${a}) \\cdot (${c}) = ${delta}`.replace(/\./g, '{,}') : '');
+  let deltaTex = $derived(
+    q
+      ? `\\begin{aligned} \\Delta &= b^2 - 4ac \\\\ &= (${b})^2 - 4 \\cdot (${a}) \\cdot (${c}) \\\\ &= ${delta} \\end{aligned}`.replace(/(\d)\.(\d)/g, '$1{,}$2')
+      : '',
+  );
 
   let caseText = $derived(
     count === 2 ? 'Δ > 0 : deux solutions, la parabole coupe l\'axe des x en deux points.'
@@ -100,7 +104,7 @@
   .explorer {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 820px) {
     .explorer {

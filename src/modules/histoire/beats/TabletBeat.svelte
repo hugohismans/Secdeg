@@ -65,6 +65,7 @@
 <style>
   .tablet {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.6rem;
     background: var(--papier);
     border: 1px solid var(--filet);

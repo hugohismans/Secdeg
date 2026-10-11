@@ -45,7 +45,8 @@
   </table>
   {#if final}
     <div class="formula">
-      <Tex tex={`x = \\frac{-b \\pm \\sqrt{${D('\\Delta')}}}{2a} \\qquad ${D('\\Delta')} = b^2 - 4ac`} display />
+      <Tex tex={`x = \\frac{-b \\pm \\sqrt{${D('\\Delta')}}}{2a}`} display />
+      <Tex tex={`${D('\\Delta')} = b^2 - 4ac`} display />
       <p class="muted">Le ± ajoute la racine que le maître refusait : −13 pour les 39 dirhams.</p>
     </div>
   {:else}
@@ -56,6 +57,7 @@
 <style>
   .reveal {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
     background: var(--email);
     border: 1px solid var(--filet);
@@ -66,7 +68,34 @@
   table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 460px;
+  }
+  /* sur téléphone : une ligne par étape, la traduction sous la phrase */
+  @media (max-width: 560px) {
+    thead {
+      display: none;
+    }
+    table,
+    tbody,
+    tr,
+    td {
+      display: block;
+    }
+    tr {
+      padding: 0.35rem 0;
+      border-bottom: 1px dotted var(--filet);
+    }
+    td {
+      border: 0;
+      padding: 0.1rem 0.25rem;
+    }
+    td.ex {
+      text-align: left;
+    }
+    tr.on td.ex::before {
+      content: 'Avec 39 dirhams : ';
+      font-weight: 400;
+      color: var(--encre-douce);
+    }
   }
   th {
     text-align: left;

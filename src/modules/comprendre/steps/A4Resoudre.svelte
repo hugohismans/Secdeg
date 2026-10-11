@@ -46,7 +46,7 @@
         <strong>La géométrie ne montre qu'une solution.</strong> Un côté de carré est forcément positif. Mais l'algèbre en voit une autre :
         <Tex tex="(-8)^2 = 64" /> aussi ! Donc <Tex tex="x + 5" /> peut valoir <Tex tex="8" /> <em>ou</em> <Tex tex="-8" />.
       </div>
-      <div class="eq"><Tex tex={`x + 5 = ${hl('\\pm')} 8 \\quad\\Rightarrow\\quad x = 3 \;\\text{ ou }\; x = -13`} display /></div>
+      <div class="eq"><Tex tex={`x + 5 = ${hl('\\pm')} 8 \\quad\\Rightarrow\\quad x = 3 \\;\\text{ ou }\\; x = -13`} display /></div>
       <p>Vérification : <Tex tex={'(-13)^2 + 10 \\times (-13) = 169 - 130 = 39'} /> ✔</p>
       <p>Les solutions sont <Tex tex={'S = \\{-13 \;;\; 3\\}'} />. Retiens le <Tex tex="\pm" /> : <strong>deux nombres opposés ont le même carré</strong>.</p>
       <p class="muted">Al-Khwârizmî, lui, ne gardait que 3 : pour lui, une longueur négative n'avait pas de sens. Il a fallu des siècles pour accepter −13.</p>

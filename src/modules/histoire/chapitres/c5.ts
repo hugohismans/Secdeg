@@ -41,7 +41,7 @@ export const c5: Chapter = {
     },
     { kind: 'say', who: 'maitre', text: 'Alors, comme je l’écris dans mon livre : *la question est impossible.* Ce n’est pas une erreur de calcul. C’est la question elle-même qui n’a pas de réponse.' },
     { kind: 'say', who: 'hasan', text: 'Et entre les deux ? S’il reste exactement zéro ?' },
-    { kind: 'math', tex: r`x^2 + 25 = 10x \;\Longrightarrow\; (x-5)^2 = 0` },
+    { kind: 'math', tex: r`\begin{gathered} x^2 + 25 = 10x \\ \Longrightarrow\; (x-5)^2 = 0 \end{gathered}` },
     {
       kind: 'input',
       prompt: 'Combien vaut $x$ ?',

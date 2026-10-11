@@ -67,7 +67,7 @@
   }
   @media (max-width: 760px) {
     .course {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
   h1 {

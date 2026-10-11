@@ -103,7 +103,7 @@
   .layout {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 860px) {
     .layout {
